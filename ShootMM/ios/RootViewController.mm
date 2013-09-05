@@ -1,10 +1,18 @@
-//
-//  ShootMMAppController.h
-//  ShootMM
-//
-//  Created by mac on 13-6-17.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
-//
+/************************************************************************
+ 
+ Copyright (C), 2013-2014, ZhangFu Tech. Co., Ltd. All rights reserved.
+ 
+ FileName: RootViewController.mm
+ 
+ ProjectName: 射你妹
+ 
+ Author: P.Joe     Version: 1.0     Date: 13-6-13.
+ 
+ Description:
+ 
+ FunctionList:
+ 
+ ************************************************************************/
 
 #import "RootViewController.h"
 

@@ -1,16 +1,26 @@
-//
-//  ShootMMAppDelegate.cpp
-//  ShootMM
-//
-//  Created by mac on 13-6-17.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
-//
+/*******************************************************************
+ 
+ Copyright (C), 2013-2014, ZhangFu Tech. Co., Ltd. All rights reserved.
+ 
+ Filename: AppDelegate.cpp 
+ 
+ ProjectName: 射你妹
+ 
+ Author: P.Joe     Version: 1.0     Date: 13-6-13.
+ 
+ Description:
+ 
+ FunctionList:
+ 
+ 
+********************************************************************/
+
 
 #include "AppDelegate.h"
-
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
-#include "HelloWorldScene.h"
+#include "GameScene.h"
+#include "LoadingGameScene.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -28,20 +38,24 @@ bool AppDelegate::applicationDidFinishLaunching()
 {
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
+    CCEGLView *pEGLView = CCEGLView::sharedOpenGLView();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
-
+    CCSize size = CCDirector::sharedDirector()->getVisibleSize();
+    
     // turn on display FPS
-    pDirector->setDisplayStats(true);
+    pDirector->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
-
+    pEGLView->setDesignResolutionSize(size.width, size.height, kResolutionShowAll);
+    
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
-
+    CCScene *pScene = LoadingGameScene::scene();
+    CCTransitionCrossFade* transition = CCTransitionCrossFade::create(0.3, pScene);
+    
     // run
-    pDirector->runWithScene(pScene);
-
+    pDirector->runWithScene(transition);
+    
     return true;
 }
 

@@ -6,3 +6,8 @@
 	#import <Foundation/Foundation.h>
 	#import <UIKit/UIKit.h>
 #endif
+
+#ifdef DEBUG
+#else
+#define NSLog(...){};
+#endif

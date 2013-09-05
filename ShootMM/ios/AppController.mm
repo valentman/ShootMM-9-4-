@@ -1,16 +1,24 @@
-//
-//  ShootMMAppController.mm
-//  ShootMM
-//
-//  Created by mac on 13-6-17.
-//  Copyright __MyCompanyName__ 2013年. All rights reserved.
+/************************************************************************
+ 
+ Copyright (C), 2013-2014, ZhangFu Tech. Co., Ltd. All rights reserved.
+ 
+ FileName: AppController.mm
+ 
+ ProjectName: 射你妹
+ 
+ Author: P.Joe     Version: 1.0     Date: 13-6-13.
+ 
+ Description:
+ 
+ FunctionList:
+ 
+ ************************************************************************/
 //
 #import <UIKit/UIKit.h>
 #import "AppController.h"
 #import "cocos2d.h"
 #import "EAGLView.h"
 #import "AppDelegate.h"
-
 #import "RootViewController.h"
 
 @implementation AppController
@@ -38,6 +46,7 @@ static AppDelegate s_sharedApplication;
                                    multiSampling: NO
                                  numberOfSamples:0 ];
 
+    [__glView setMultipleTouchEnabled:YES];
     // Use RootViewController manage EAGLView
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     viewController.wantsFullScreenLayout = YES;
@@ -56,7 +65,6 @@ static AppDelegate s_sharedApplication;
     }
     
     [window makeKeyAndVisible];
-
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
 
     cocos2d::CCApplication::sharedApplication()->run();
@@ -115,7 +123,9 @@ static AppDelegate s_sharedApplication;
 
 - (void)dealloc {
     [super dealloc];
-}
+}   
+
+
 
 
 @end
