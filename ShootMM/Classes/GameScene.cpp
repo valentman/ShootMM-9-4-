@@ -1966,8 +1966,9 @@ void GameScene::guidePrompt()
     CCActionInterval* fadeOut = CCFadeOut::create(0.1);
     CCActionInterval* moveBack = CCMoveTo::create(0.2,CCPointMake(280, 220));
     CCActionInterval* fadeIn = CCFadeIn::create(0.1);
+    CCActionInterval* delayTime = CCDelayTime::create(4.0);
     CCSequence* sequence = CCSequence::create(fadeIn,moveTo,fadeOut,moveBack,NULL);
-    CCActionInterval* repeate = CCRepeat::create(sequence, 3);
+    CCActionInterval* repeate = CCRepeat::create(sequence,3);
     CCSequence* sequence2 = CCSequence::create(repeate,funcnOfcallback,NULL);
     guideGesture->runAction(sequence2);
 }

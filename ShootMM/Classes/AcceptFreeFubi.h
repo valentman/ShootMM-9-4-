@@ -24,6 +24,9 @@ public:
     
     static CCScene* scene();
     virtual bool init();
+    
+    void particalSystem();
+    
     CREATE_FUNC(AcceptFreeFubi);
 };
 

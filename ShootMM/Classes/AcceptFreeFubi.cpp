@@ -50,14 +50,15 @@ bool AcceptFreeFubi::init()
     CCParticleSystem *coin[4];
     string pictureArray[2] = {"ZF_Shoot_MenuScene_background_freeFubi_coin1.png","ZF_Shoot_MenuScene_background_freeFubi_coin2.png"};
     int TotalParticles = 100;
-    int StartSize[2] = {70,90};
-    int EndSize[2] = {65,85};
+    int StartSize[2] = {55,65};
+    int EndSize[2] = {30,40};
     int StartSpin = 20;
     int StartSpinVar = 10;
     int EndSpin = 280;
     int EndSpinVar = 10;
     int EmissionRate = 5;
-    int Speed = 600;
+    int Speed = 0;
+    CCPoint gravity = CCPointMake(0, -3000);
     ccColor4F cc1;
     cc1.a=253.0f;
     cc1.b=185.0f;
@@ -74,6 +75,10 @@ bool AcceptFreeFubi::init()
         coin[i]->setStartColor(cc1);
         coin[i]->setEndColor(cc1);
         coin[i]->setSpeed(Speed);
+        coin[i]->setGravity(gravity);
+        coin[i]->setDuration(5.0);
+        coin[i]->setLife(3.0);
+        coin[i]->setPosition(CCPointMake(480, 640));
         
 
         if ( i%2 == 0) {
@@ -100,6 +105,12 @@ bool AcceptFreeFubi::init()
 }
 
 
+void AcceptFreeFubi::particalSystem()
+{
+    string pictureArray[2] = {"ZF_Shoot_MenuScene_background_freeFubi_coin1.png","ZF_Shoot_MenuScene_background_freeFubi_coin2.png"};
+    
+    CCParticleSystem* particle = CCParticleRain::create();
+}
 
 
 

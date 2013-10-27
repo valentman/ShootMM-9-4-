@@ -393,16 +393,14 @@ void MenuScene::menuCloseCallBack(CCObject* pSender)
             mallMarketsLayer->setPScene(1);
             this->addChild(mallMarketsLayer,4);
             this->setMenuButtonTouchFasle();
-            mallMarketsLayer->setPScene(1);
             break;
         }
 
         case 4:
-
-            transition = CCTransitionFade::create(0.2, GuideScene::scene());
-            CCDirector::sharedDirector()->pushScene(transition);
-            break;
-            
+            GuideScene* guide = GuideScene::create();
+            guide->setPosition(CCPointZero);
+            this->addChild(guide,4);
+            this->setMenuButtonTouchFasle();
             break;
     }
     

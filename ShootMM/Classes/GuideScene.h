@@ -28,6 +28,7 @@ class GuideScene: public CCLayer,CCScrollViewDelegate
 {
 public:
     virtual bool init();
+    virtual void onExit();
     static CCScene *scene();
     
     

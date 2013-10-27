@@ -26,6 +26,13 @@ CCScene *GuideScene::scene()
     return scene;
 }
 
+
+void GuideScene::onExit()
+{
+    CCLayer::onExit();
+}
+
+
 bool GuideScene::init()
 {
     if (!CCLayer::init()) {
@@ -34,11 +41,15 @@ bool GuideScene::init()
     CCLOG("/**~~~~~~~~~~~~~~~~GuideScene:init()~~~~~~~~~~~~~~~~~");
     //取出主屏幕的尺寸，以及初始化数据
     size = CCDirector::sharedDirector()->getVisibleSize();
-    CCSprite* whiteBg = CCSprite::create("ZF_Shoot_whiteBg.png",CCRectMake(0,0,960,640));
-    whiteBg->setPosition(ccp(size.width*0.5,size.height*0.5));
-    whiteBg->setContentSize(size);
-    this->addChild(whiteBg,0);
+//    CCSprite* whiteBg = CCSprite::create("ZF_Shoot_whiteBg.png",CCRectMake(0,0,size.width,size.height));
+//    whiteBg->setPosition(ccp(size.width*0.5,size.height*0.5));
+//    whiteBg->setContentSize(size);
+//    this->addChild(whiteBg,0);
     
+    CCSprite* helpBg = CCSprite::create("ZF_Shoot_help.png");
+    helpBg->setAnchorPoint(ccp(0.5,0.5));
+    helpBg->setPosition(ccp(size.width*0.5,size.height*0.5));
+    this->addChild(helpBg,0);
     
     //1.create a container
     CCLayer* container = CCLayer::create();
@@ -50,13 +61,14 @@ bool GuideScene::init()
     
     
     //2.create a scrollView
-    CCScrollView* scrollView = CCScrollView::create(CCSizeMake(size.width, size.height*2));
+    CCScrollView* scrollView = CCScrollView::create(CCSizeMake(size.width*0.5, size.height*3));
     addChild(scrollView);
-    
+    scrollView->setAnchorPoint(ccp(0.5,0.5));
+    scrollView->setPosition(ccp(10,size.height*0.23));
     
     //3.setOption
     scrollView->setBounceable(true);
-    scrollView->setViewSize(CCSizeMake(size.width, size.height*2));
+    scrollView->setViewSize(CCSizeMake(size.width, size.height*0.55));
     scrollView->setContainer(container);
     scrollView->setDirection(kCCScrollViewDirectionVertical);
     scrollView->setTouchEnabled(true);
@@ -70,7 +82,7 @@ bool GuideScene::init()
                                                           "ZF_Shoot_button_coinList_back1.png",
                                                           this,
                                                           menu_selector(GuideScene::menuCloseCallBack) );
-    pCloseItem->setPosition( CCPointMake(size.width*0.1 , size.height*0.9) );
+    pCloseItem->setPosition( CCPointMake(size.width*0.5-235 , size.height*0.92) );
     pCloseItem->setTag(5);
     CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
     pMenu->setPosition( CCPointZero );
@@ -94,6 +106,9 @@ void GuideScene:: scrollViewDidZoom(CCScrollView* view)
 
 void GuideScene::menuCloseCallBack(CCNode* pSender)
 {
-    CCDirector::sharedDirector()->popScene();
+    ((MenuScene*)this->getParent())->sceneMenu->setTouchEnabled(true);
+    ((MenuScene*)this->getParent())->richMenu->setTouchEnabled(true);
+    ((MenuScene*)this->getParent())->headMenu->setTouchEnabled(true);
+    this->removeFromParentAndCleanup(true);
 }
 
